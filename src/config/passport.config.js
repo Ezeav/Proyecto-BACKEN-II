@@ -4,7 +4,7 @@ import { Strategy as JwtStrategy, ExtractJwt } from "passport-jwt";
 import { UserModel } from "../models/user.model.js";
 import { CartModel } from "../models/cart.model.js";
 import { createHash, isValidPassword } from "../utils/hash.js";
-import { JWT_SECRET } from "./config.js";
+import { JWT_SECRET } from "../env.js";
 
 export const initializePassport = () => {
   passport.use(
@@ -74,7 +74,7 @@ export const initializePassport = () => {
 
   // JWT strategy for "current"
   passport.use(
-    "jwt",
+    "current",
     new JwtStrategy(
       {
         jwtFromRequest: ExtractJwt.fromAuthHeaderAsBearerToken(),
@@ -96,3 +96,4 @@ export const initializePassport = () => {
     )
   );
 };
+

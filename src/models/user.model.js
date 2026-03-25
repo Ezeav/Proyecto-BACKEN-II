@@ -38,6 +38,21 @@ const userSchema = new mongoose.Schema(
       enum: ["user", "admin"],
       default: "user",
     },
+
+    // Password reset
+    passwordResetTokenHash: {
+      type: String,
+      default: null,
+    },
+    passwordResetExpiresAt: {
+      type: Date,
+      default: null,
+    },
+    // Guardamos el hash anterior para evitar reutilizar la misma contraseña.
+    previousPasswordHash: {
+      type: String,
+      default: null,
+    },
   },
   {
     timestamps: true,
@@ -45,3 +60,4 @@ const userSchema = new mongoose.Schema(
 );
 
 export const UserModel = mongoose.model(userCollection, userSchema);
+
